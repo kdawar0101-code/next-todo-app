@@ -24,7 +24,8 @@ export default function Home() {
   async function fetchTodos() {
     const response = await fetch('api/todos')
     const data = await response.json()
-    console.log(data);
+
+    
    
     if(response.status === 401 || response.status === 429){
      return router.push("/login")
@@ -90,11 +91,27 @@ export default function Home() {
     }
   }
 
+  async function logoutUser() {
+    const response = await fetch(`api/logout`, {
+      method: 'POST',
+    })
+
+    if (response.status === 204) {
+      router.push('/login')
+    }
+  }
+
+
+
   return (
     <div className="flex flex-col items-center pt-20 gap-12 px-4 py-7">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 flex-col">
         <FaUserLarge className="text-2xl" />
         <p className="text-2xl font-bold">{user.name}</p>
+        <p className="text-2xl font-bold">{user.email}</p>
+        <button onClick={() => {
+          logoutUser()
+        }} className="cursor-pointer">Logout</button>
       </div>
       <div className="border-amber-950 border-2 rounded-xl w-full max-w-xl flex justify-between px-3">
         <input
