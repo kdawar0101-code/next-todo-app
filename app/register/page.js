@@ -31,7 +31,7 @@ export default function RegistrationPage() {
         setEmail('');
         setPassword('');
       } else {
-        setMessage(data.message || 'Registration failed');
+        setMessage(data.error || 'Registration failed');
       }
     } catch (error) {
       setMessage('An error occurred. Please try again.');

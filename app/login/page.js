@@ -73,7 +73,7 @@ export default function LoginPage() {
       console.log(data);
       
       if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
+        throw new Error(data.error || 'Login failed');
       }
       
       setSuccessMessage('Login successful! Redirecting...');
